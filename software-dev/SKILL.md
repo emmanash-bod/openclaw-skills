@@ -105,7 +105,56 @@ commit).
 
 For all frontend/UI work, use the frontend-design skill to ensure
 production-grade, distinctive design (not generic AI aesthetics).
+
+After frontend-design edits are complete, run a visual QA pass:
+take screenshots of every key page at desktop (1440px), tablet
+(768px), and mobile (375px) using Playwright. Review each for
+layout issues, typography, contrast, responsiveness, and polish.
+Fix anything that doesn't look production-grade, then re-screenshot
+to confirm. Include screenshots in the PR.
 ```
+
+## Phase 3: Visual QA (Post-Build)
+
+After metaswarm completes the build and the frontend-design plugin has been applied, run a visual review pass before final delivery:
+
+### 1. Capture Screenshots
+Use Playwright to screenshot every key page/view at multiple breakpoints:
+```bash
+# Install if needed
+npx playwright install chromium
+
+# Desktop (1440px), Tablet (768px), Mobile (375px)
+npx playwright screenshot --viewport-size=1440,900 <url> /tmp/visual-review/desktop-home.png
+npx playwright screenshot --viewport-size=768,1024 <url> /tmp/visual-review/tablet-home.png
+npx playwright screenshot --viewport-size=375,812 <url> /tmp/visual-review/mobile-home.png
+```
+Repeat for all key pages (home, dashboard, settings, forms, etc.).
+
+### 2. Review & Identify Improvements
+Analyze each screenshot for:
+- **Layout issues** — overflow, misaligned elements, inconsistent spacing
+- **Typography** — hierarchy clarity, readability, line lengths
+- **Color & contrast** — accessibility (WCAG AA minimum), visual consistency
+- **Responsive behavior** — nothing broken at mobile/tablet breakpoints
+- **Empty states** — do empty pages/lists look intentional or broken?
+- **Visual polish** — does it look production-grade or like a generic AI build?
+- **Brand consistency** — if a design system exists, is it followed?
+
+### 3. Iterate
+For any issues found:
+- Fix them directly if straightforward (spacing, sizing, color)
+- Re-run the frontend-design plugin for larger design problems
+- Take fresh screenshots after fixes to confirm
+- Repeat until the UI passes visual review
+
+### 4. Include in Handoff
+Add screenshots to the PR or delivery:
+- Before/after comparisons if significant changes were made
+- Note any trade-offs or design decisions made during QA
+- Flag anything that needs human/designer input
+
+This step is mandatory for all projects with a UI. Skip only for pure backend/API work.
 
 ## What the Spec Must NOT Contain
 
