@@ -190,6 +190,14 @@ Before any build, ensure the project has:
 - Final build review before deployment/PR
 - All code pushed to fork for review before upstream PR
 
+## PR Delivery Checklist
+
+When sharing a completed PR:
+1. **Vercel preview link** — Include the branch-specific preview URL from Vercel so the feature can be reviewed before merging to production. Find it in the PR's deployment checks or Vercel dashboard.
+2. **Screenshots** — Include visual QA screenshots (desktop + mobile minimum)
+3. **What changed** — Clear summary of features/fixes in the PR body
+4. **Note:** If the fork doesn't have Vercel integration (e.g., emmanash-bod on BlueOrangeDigital repos), flag this and ask for the PR to be pushed to a branch on the main repo to trigger a preview deploy.
+
 ## Output Artifacts
 
 - `SPEC.md` — The functional specification (this is the product document)
